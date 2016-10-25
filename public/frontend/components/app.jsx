@@ -1,10 +1,13 @@
 import React from 'react';
-import UserPanel from './userpanel';
+import Chat from './chat';
+import Game from './game';
 
 const App = ({children}) => (
   <div>
+    <aside>
+      <Chat />
+    </aside>
     <main className='lobby'>
-      <UserPanel />
       {children}
     </main>
   </div>
