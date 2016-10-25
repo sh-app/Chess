@@ -8,5 +8,5 @@ export const app = feathers()
   .configure(socketio(socket))
   .configure(hooks())
   .configure(authentication({
-    storage: window.localStorage
+    storage: window.sessionStorage
   }));

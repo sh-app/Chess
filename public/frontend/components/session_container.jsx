@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Session from './session';
-import { login, signup } from '../../actions/session_actions';
+import { login, signup } from '../store/actions';
 
 const mapStateToProps = (state) => ({
   currentUser: state.currentUser,

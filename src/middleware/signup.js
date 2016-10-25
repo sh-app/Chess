@@ -8,7 +8,7 @@ module.exports = function(app) {
       username: body.username,
       password: body.password
     })
-    .then( user => res.redirect('tables.html'))
+    .then(user => res.redirect('/lobby'))
     .catch(next);
   };
 };

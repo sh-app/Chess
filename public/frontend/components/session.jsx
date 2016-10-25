@@ -25,7 +25,7 @@ export default class Session extends React.Component {
 
   handleSubmit(e) {
     let user = Object.assign({}, {username: this.state.username, password: this.state.password});
-    this.state.login ? this.props.login({user}) : this.props.signup({user});
+    this.state.login ? this.props.login(user) : this.props.signup(user);
   }
 
   render() {
@@ -53,7 +53,7 @@ export default class Session extends React.Component {
               <button>{buttonValue}</button>
           </form>
         </div>
-        <div class="main-page-bg">
+        <div className="main-page-bg">
           <a href="#" onClick={this.handleClick}>{linkText}</a>
         </div>
       </div>

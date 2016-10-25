@@ -3,7 +3,7 @@ export const signupAjax = (user, success) => {
     method: 'POST',
     url: '/signup',
     data: user,
-    success
+    success: success
   });
 };
 
