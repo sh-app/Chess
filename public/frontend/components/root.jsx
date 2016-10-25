@@ -1,14 +1,19 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import SessionContainer from './session_container';
 import App from './app';
 
-const Root = () => {
+const Root = ({store}) => {
 
   return (
-    <Router history={hashHistory}>
-      <Route path='/' component={App} >
-      </Route>
-    </Router>
+    <Provider store={store}>
+      <Router history={hashHistory}>
+        <Route path='/lobby' component={App} >
+        </Route>
+        <Route path='/' component={SessionContainer} />
+      </Router>
+    </Provider>
   );
 };
 
