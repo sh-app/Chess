@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 export default class Session extends React.Component {
 
@@ -8,6 +9,18 @@ export default class Session extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.currentUser) {
+      hashHistory.push("/lobby");
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.currentUser) {
+      hashHistory.push("/lobby");
+    }
   }
 
   handleClick(e) {
@@ -24,6 +37,7 @@ export default class Session extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     let user = Object.assign({}, {username: this.state.username, password: this.state.password});
     this.state.login ? this.props.login(user) : this.props.signup(user);
   }
@@ -49,8 +63,7 @@ export default class Session extends React.Component {
                 type='password'
                 placeholder='* * * * * *'
                 value={this.state.password}/>
-
-              <button>{buttonValue}</button>
+              <input id='submit' type='submit' value={buttonValue}/>
           </form>
         </div>
         <div className="main-page-bg">

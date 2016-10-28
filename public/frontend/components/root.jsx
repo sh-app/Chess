@@ -3,20 +3,27 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import SessionContainer from './session_container';
 import App from './app';
+import TableContainer from './table_container';
+import { app } from '../config';
 
 const Root = ({store}) => {
-  const _redirectIfLoggedIn = (next, replace) => {
+  const _redirectIfLoggedOut = (next, replace) => {
     if (store.getState().currentUser) {
-      replace('/lobby');
+      app.authenticate({token: window.sessionStorage.token, type: 'token'})
+      .then(console.log(`${window.sessionStorage.currentUser} validated`))
+      .catch();
+    } else {
+      replace('/');
     }
   };
 
   return (
     <Provider store={store}>
       <Router history={hashHistory}>
-        <Route path='/lobby' component={App} >
+        <Route path='/lobby' component={App} onEnter={_redirectIfLoggedOut}>
+          <IndexRoute component={TableContainer}/>
         </Route>
-        <Route path='/' component={SessionContainer} onEnter={_redirectIfLoggedIn}/>
+        <Route path='/' component={SessionContainer}/>
       </Router>
     </Provider>
   );

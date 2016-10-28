@@ -1,12 +1,13 @@
 import {
   SIGNUP,
   LOGIN,
+  SEND_MSG,
   login,
   receiveUser
 } from './actions';
 import { signupAjax, loginAjax } from './util';
 import { applyMiddleware } from 'redux';
-import { app } from '../config';
+import { app, socket } from '../config';
 import createLogger from 'redux-logger';
 
 const Middleware =({ getState, dispatch }) => next => action => {
@@ -15,12 +16,16 @@ const Middleware =({ getState, dispatch }) => next => action => {
 
     case SIGNUP:
       signupAjax(action.user, (data) =>
-        loginAjax(action.user, (user) => dispatch(receiveUser(user.data)))
+        loginAjax(action.user, (user) => dispatch(receiveUser(user)))
       );
       return next(action);
 
     case LOGIN:
-      loginAjax(action.user, (user) => dispatch(receiveUser(user.data)));
+      loginAjax(action.user, (user) => dispatch(receiveUser(user)));
+      return next(action);
+
+    case SEND_MSG:
+      socket.emit('message', action.msg);
       return next(action);
 
     default:

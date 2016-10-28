@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { app, socket } from '../config';
 import Users from './users';
 
@@ -8,23 +7,56 @@ export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: this.props.users || [],
+      messages: this.props.messages || [],
+      msg: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    const userService = app.service('users');
-    userService.find().then((page) => this.setState({ users: page.data}));
-    userService.on('created', user => this.setState({
-       users: this.state.users.concat(user)
-     }));
-     debugger
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ['users']: nextProps.users,
+      ['messages']: nextProps.messages
+    });
+  }
+
+  handleChange(field) {
+    return (e) => this.setState({[field]: e.target.value});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.sendMsg(this.state.msg);
+    this.setState({['msg']: ''});
   }
 
   render() {
+    debugger
+    const users = this.state.users.map( user => {
+      return <li>{user}</li>;
+    });
+    const messages = this.state.messages.map( msg => {
+      return <li>{msg}</li>;
+    });
+
     return (
       <div className="">
-        <Users users={this.state.users} />
+        chat:
+        <ul>
+          {users}
+        </ul>
+        <ul>
+          {messages}
+        </ul>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type='text'
+            onChange={this.handleChange('msg')}
+            value={this.state.msg}/>
+          <input id='submit' type='submit' value='SEND'/>
+        </form>
       </div>
     );
   }

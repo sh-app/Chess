@@ -30,4 +30,20 @@ app.use(compress())
   .configure(services)
   .configure(middleware);
 
+app.service('tables').create({
+  room: 'New York'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Chicago'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'San Francisco'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+
 module.exports = app;

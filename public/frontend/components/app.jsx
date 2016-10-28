@@ -1,12 +1,10 @@
 import React from 'react';
-import Chat from './chat';
+import ChatContainer from './chat_container';
 import Game from './game';
 
 const App = ({children}) => (
   <div>
-    <aside>
-      <Chat />
-    </aside>
+    <ChatContainer/>
     <main className='lobby'>
       {children}
     </main>
