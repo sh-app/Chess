@@ -5,18 +5,17 @@ const port = app.get('port');
 const server = app.listen(port);
 
 let usersOnline = [];
-let tables = {};
+let tables = [];
 app.service('tables').find().then(
   page => {
     page.data.forEach( table => {
-      tables[table.room] = {
-        ['id']: table._id,
-        ['players']: [],
-        ['full']: false
-      };
-    });
-  }
-);
+      let modTable = table;
+      modTable['players'] = [];
+      modTable['full'] = false;
+      tables.push(modTable);
+  });
+});
+
 
 
 server.on('listening', () =>
@@ -24,8 +23,8 @@ server.on('listening', () =>
 );
 
 app.io.on('connection', (socket) => {
-  socket.emit('updateUserList', usersOnline);
-  socket.emit('updateTableList', tables);
+  app.io.emit('updateUserList', usersOnline);
+  app.io.emit('updateTableList', tables);
   console.log('an user has connected');
 
   socket.on('loggedIn', (user) => {

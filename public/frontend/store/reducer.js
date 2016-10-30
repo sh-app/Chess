@@ -7,7 +7,7 @@ import { app } from '../config';
 
 const defaultSession = {
   currentUser: null,
-  tables: {},
+  tables: [],
   messages: [],
   users: []
 };

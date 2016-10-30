@@ -7,15 +7,15 @@ import { app, socket } from './config.js';
 
 let store;
 if (window.sessionStorage.currentUser) {
-  const userInfo = {currentUser: window.sessionStorage.currentUser};
+  const userInfo = { currentUser: window.sessionStorage.currentUser };
   store = configureStore(userInfo);
 } else {
   store = configureStore();
 }
 
+  socket.on('msg', (msg) => store.dispatch(actions.receiveMsg(msg)));
   socket.on('updateUserList', (usersOnline) => store.dispatch(actions.receiveUsers(usersOnline)));
   socket.on('updateTableList', (tables) => store.dispatch(actions.receiveTables(tables)));
-  socket.on('msg', (msg) => store.dispatch(actions.receiveMsg(msg)));
   window.store = store;
 
   document.addEventListener('DOMContentLoaded', () => {

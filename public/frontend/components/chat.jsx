@@ -18,7 +18,7 @@ export default class Chat extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       ['users']: nextProps.users,
-      ['messages']: nextProps.messages
+      ['messages']: nextProps.messages || []
     });
   }
 
