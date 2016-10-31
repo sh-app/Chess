@@ -1,6 +1,9 @@
 import {
   SIGNUP,
   LOGIN,
+  GET_USERS,
+  GET_TABLES,
+  GET_TABLE,
   SEND_MSG,
   login,
   receiveUser
@@ -21,11 +24,26 @@ const Middleware =({ getState, dispatch }) => next => action => {
       return next(action);
 
     case LOGIN:
-      loginAjax(action.user, (user) => dispatch(receiveUser(user)));
+      loginAjax(action.user, (user) => {
+        dispatch(receiveUser(user));
+        socket.emit('loggedIn', user.data.username);
+      });
+      return next(action);
+
+    case GET_USERS:
+      socket.emit('requestUsers');
+      return next(action);
+
+    case GET_TABLES:
+      socket.emit('requestTables');
+      return next(action);
+
+    case GET_TABLE:
+      socket.emit('requestTable', action.tableId);
       return next(action);
 
     case SEND_MSG:
-      socket.emit('message', action.msg);
+      socket.emit('message', [action.msg, action.user]);
       return next(action);
 
     default:

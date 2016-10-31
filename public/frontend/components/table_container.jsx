@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import Table from './table';
-import { sendMsg } from '../store/actions';
+import { getTable, receiveTable } from '../store/actions';
 
 const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
-  tables: state.tables
+  currentTable: state.currentTable
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendMsg: (msg) => dispatch(sendMsg(msg))
+  getTable: (id) => dispatch(getTable(id)),
+  receiveTable: (table) => dispatch(receiveTable(table)),
 });
 
 export default connect(

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Chat from './chat';
-import { sendMsg } from '../store/actions';
+import { getUsers, receiveUsers, sendMsg, receiveMsg } from '../store/actions';
 
 const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
@@ -9,7 +9,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendMsg: (msg) => dispatch(sendMsg(msg))
+  getUsers: () => dispatch(getUsers()),
+  receiveUsers: (users) => dispatch(receiveUsers(users)),
+  sendMsg: (msg, user) => dispatch(sendMsg(msg, user)),
+  receiveMsg: (msg) => dispatch(receiveMsg(msg))
 });
 
 export default connect(

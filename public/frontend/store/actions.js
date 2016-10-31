@@ -1,5 +1,9 @@
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
+export const GET_USERS = 'GET_USERS';
+export const GET_TABLES = 'GET_TABLES';
+export const GET_TABLE = 'GET_TABLE';
+export const RECEIVE_TABLE = 'RECEIVE_TABLE';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_MSG = 'RECEIVE_MSG';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
@@ -14,6 +18,24 @@ export const signup = (user) => ({
 export const login = (user) => ({
   type: LOGIN,
   user
+});
+
+export const getUsers = () => ({
+  type: GET_USERS,
+});
+
+export const getTables = () => ({
+  type: GET_TABLES,
+});
+
+export const getTable = (tableId) => ({
+  type: GET_TABLE,
+  tableId
+});
+
+export const receiveTable = (table) => ({
+  type: RECEIVE_TABLE,
+  table
 });
 
 export const receiveUser = (user) => ({
@@ -36,7 +58,8 @@ export const receiveMsg = (msg) => ({
   msg
 });
 
-export const sendMsg = (msg) => ({
+export const sendMsg = (msg, user) => ({
   type: SEND_MSG,
-  msg
+  msg,
+  user
 });

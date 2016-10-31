@@ -13,13 +13,13 @@ export default class Session extends React.Component {
 
   componentWillMount() {
     if (this.props.currentUser) {
-      hashHistory.push("/lobby");
+      hashHistory.push("lobby");
     }
   }
 
   componentDidUpdate() {
     if (this.props.currentUser) {
-      hashHistory.push("/lobby");
+      hashHistory.push("lobby");
     }
   }
 

@@ -7,12 +7,19 @@ export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: this.props.users || [],
-      messages: this.props.messages || [],
+      users: [],
+      messages: [],
       msg: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const that = this;
+    this.props.getUsers();
+    socket.on('msg', (msg) => that.props.receiveMsg(msg));
+    socket.on('updateUserList', (usersOnline) => that.props.receiveUsers(usersOnline));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,22 +35,21 @@ export default class Chat extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.sendMsg(this.state.msg);
+    this.props.sendMsg(this.state.msg, this.props.currentUser);
     this.setState({['msg']: ''});
   }
 
   render() {
-    debugger
-    const users = this.state.users.map( user => {
-      return <li>{user}</li>;
+    const users = this.state.users.map( (user, idx) => {
+      return <li key={idx}>{user}</li>;
     });
-    const messages = this.state.messages.map( msg => {
-      return <li>{msg}</li>;
+    const messages = this.state.messages.map( (msg, idx) => {
+      return <li key={idx}><b>{msg[1]}:</b> {msg[0]}</li>;
     });
 
     return (
       <div className="">
-        chat:
+        Users Online:
         <ul>
           {users}
         </ul>

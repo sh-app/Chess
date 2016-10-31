@@ -13,11 +13,8 @@ if (window.sessionStorage.currentUser) {
   store = configureStore();
 }
 
-  socket.on('msg', (msg) => store.dispatch(actions.receiveMsg(msg)));
-  socket.on('updateUserList', (usersOnline) => store.dispatch(actions.receiveUsers(usersOnline)));
-  socket.on('updateTableList', (tables) => store.dispatch(actions.receiveTables(tables)));
   window.store = store;
-
+  
   document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store}/>, document.getElementById('root'));
   });
