@@ -40,6 +40,8 @@ export default class Table extends React.Component {
   setupBoard() {
     const that = this;
     const state = this.state.board || 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
+    this.game = new Chess();
+    this.game.load(state);
     const board = new window.Chessboard('board', {
       position: state,
       eventHandlers: {
@@ -47,8 +49,15 @@ export default class Table extends React.Component {
         onMove: this.pieceMove.bind(that)
       }
     });
-    this.game = new Chess();
-    this.game.load(state);
+    if (this.game.turn() === 'w') {
+      if (this.state.players[0] !== this.props.currentUser) {
+        board.enableUserInput(false);
+      }
+    } else {
+      if (this.state.players[1] !== this.props.currentUser) {
+        board.enableUserInput(false);
+      }
+    }
   }
 
   pieceMove(move) {

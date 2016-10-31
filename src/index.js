@@ -60,27 +60,26 @@ app.io.on('connection', (socket) => {
   });
 
   socket.on('joinTable', (seating) => {
-    let findSeat = (table, idx) => {
+    let findIdx = (table, idx) => {
       if (table.room === seating[0]) {
-        return idx;
+        return table;
       }
     };
-    let tableIdx = tables.findIndex(findSeat);
-    console.log(tableIdx);
-    tables[tableIdx].players.push(seating[2]);
-    console.log(tables[tableIdx]);
-    app.io.emit('receiveTable', tables[tableIdx]);
+    let idx = tables.findIndex(findIdx);
+    console.log(idx);
+    tables[idx].players.push(seating[2]);
+    console.log(tables[idx]);
+    app.io.emit('receiveTable', tables[idx]);
   });
 
   socket.on('move', (gameState) => {
-    let findIndex = (table, idx) => {
+    let findIdx = (table, idx) => {
       if (table.room === gameState[0].room) {
-        return idx;
+        return table;
       }
     };
-    let idx = tables.findIndex(findIndex);
+    let idx = tables.findIndex(findIdx);
     console.log(idx);
-    tables[idx] = gameState[0];
     tables[idx]["board"] = gameState[1];
     console.log(tables[idx]);
     app.io.emit('receiveTable', tables[idx]);
