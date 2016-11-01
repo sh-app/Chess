@@ -40,27 +40,49 @@ input:focus::-webkit-input-placeholder {
   opacity: 0;
 }
 
-/* --- GENERAL --- */
-.main-page-header {
-  width: 100%;
-  height: 40%;
-  padding-top: 20px;
-  background-color: #E0FBFC;
-  border-bottom: 2px solid #DADADA;
-}
-
-.main-page-bg {
-  width: 100%;
-  height: 60%;
-  background-color: #98C1D9;
+button {
+  cursor: pointer;
+  padding: 10px;
   text-align: center;
+  color: #FFFFFF;
+  background-color: #2DBE60;
+  border-radius: 5px;
 }
 
-.main-page-bg a {
+button:hover {
+  color: #FFFFFF;
+  background-color: #0F7C33;
+}
+
+h3 {
+  font-size: 18px;
+}
+/* --- LOGIN PAGE --- */
+.login-page {
+  background-color: #E0FBFC;
+  height: 100vh;
+}
+
+.login-header {
+  background-color: #CA5D60;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  color: #FFFFFF;
+  font-size: 24px;
+  border-bottom: 1px solid #DADADA;
+}
+
+.login-page p {
+  text-align: center;
   padding: 20px;
-  display: block;
+}
+
+.login-box {
+  margin: auto;
+  width: 500px;
+  margin-top: 100px;
+  padding: 0px 20px;
   background-color: #FFFFFF;
-  border-bottom: 2px solid #DADADA;
+  border: 2px solid #DADADA;
 }
 
 #logo {
@@ -72,27 +94,20 @@ input:focus::-webkit-input-placeholder {
 .login {
   float: left;
   margin-top: 55px;
-  background-color: transparent;
   height: 200px;
   width: 250px;
-  border-radius: 10px;
 }
 
 .login input {
-  margin: auto;
-  display: block;
   color: #CA5D60;
   background-color: transparent;
   text-align: center;
-  border-radius: 0px;
   font-size: 24px;
   width: 100%;
-  border: 0px;
   padding: 10px;
   margin-top: 10px;
-  border-bottom: 2px dashed #CA5D60;
+  border-bottom: 1px dashed #CA5D60;
 }
-
 
 #submit {
   cursor: pointer;
@@ -100,7 +115,6 @@ input:focus::-webkit-input-placeholder {
   color: #FFFFFF;
   background-color: #CA5D60;
   border-radius: 5px;
-  border: 0px;
 }
 
 #submit:hover {
@@ -109,7 +123,100 @@ input:focus::-webkit-input-placeholder {
   border: 1px solid #DADADA;
 }
 
+/* --- HEADER --- */
+.header {
+  padding: 10px;
+  width: 100%;
+  background-color: #3B6796;
+  border-bottom: 2px solid #DADADA;
+  color: #FFFFFF;
+}
+
+.header button {
+  float: right;
+  margin-right: 20px;
+}
+
+.header h3 p {
+  float: right;
+}
+
+/* --- CHAT --- */
+.chatbox {
+  float: left;
+  width: 45%;
+  height: 100%;
+  padding: 10px;
+}
+
+.users-title {
+  width: 30%;
+  float: left;
+  padding: 5px;
+  font-family: 'Ubuntu Condensed';
+  text-align: center;
+  border-right: 1px solid #DADADA;
+}
+
+.messages-title {
+  float: left;
+  width: 60%;
+  padding: 5px;
+  font-family: 'Ubuntu Condensed';
+  text-align: center;
+  border-right: 1px solid #DADADA;
+}
+
+.users {
+  width: 30%;
+  height: 100%;
+  float: left;
+  padding: 5px;
+  border-right: 1px solid #DADADA;
+}
+
+.users li {
+  border-left: 5px solid #2DBE60;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.chatbox form {
+  width: 60%;
+  float: left;
+  padding: 5px;
+  border-right: 1px solid #DADADA;
+}
+
+.chat-message {
+  width: 90%;
+  border-bottom: 1px solid #2DBE60;
+}
+
+.chat-submit {
+  width: 10%;
+  float: right;
+  cursor: pointer;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #2DBE60;
+  border-bottom: 1px solid #2DBE60;
+}
+.messages {
+  width: 60%;
+  height: 80%;
+  float: left;
+  padding: 5px;
+  border-right: 1px solid #DADADA;
+}
+
+.messages li {
+  padding: 5px;
+  border-bottom: 1px dashed #DADADA;
+}
+
 #board {
+  float: right;
   width: 50%;
   border: 2px solid #DADADA;
 }

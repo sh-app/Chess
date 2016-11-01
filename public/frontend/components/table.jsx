@@ -32,7 +32,6 @@ export default class Table extends React.Component {
   }
 
   handleJoin(seat) {
-    debugger
     const that = this;
     socket.emit('joinTable', [that.state.room, seat, that.props.currentUser]);
   }

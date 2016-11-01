@@ -44,25 +44,35 @@ export default class Chat extends React.Component {
       return <li key={idx}>{user}</li>;
     });
     const messages = this.state.messages.map( (msg, idx) => {
-      return <li key={idx}><b>{msg[1]}:</b> {msg[0]}</li>;
+      let display = msg[1]==='System' ? {color: '#DADADA'} : {display: ''};
+      return <li key={idx} style={display}>
+        <b>{msg[1]}:</b> {msg[0]}
+        </li>;
     });
-
+    messages.reverse();
     return (
-      <div className="">
-        Users Online:
-        <ul>
+      <div className='chatbox'>
+        <div className='users-title'>Users Online:</div>
+        <div className='messages-title'>Chat:</div>
+        <ul className='users'>
           {users}
-        </ul>
-        <ul>
-          {messages}
         </ul>
         <form onSubmit={this.handleSubmit}>
           <input
             type='text'
+            className='chat-message'
             onChange={this.handleChange('msg')}
+            placeholder='say hello!'
             value={this.state.msg}/>
-          <input id='submit' type='submit' value='SEND'/>
+          <input
+            type='submit'
+            className='chat-submit'
+            onSubmit={this.handleSubmit}
+            value={'>>'}/>
         </form>
+        <ul className='messages'>
+          {messages}
+        </ul>
       </div>
     );
   }

@@ -20,8 +20,6 @@ app.service('tables').find({
   });
 });
 
-
-
 server.on('listening', () =>
   console.log(`Chess application started on ${app.get('host')}:${port}`)
 );
@@ -36,6 +34,22 @@ app.io.on('connection', (socket) => {
 
   socket.on('loggedIn', (user) => {
     usersOnline.push(user);
+    app.service('users').find({
+      query: {
+        username: user
+      }
+    }).then(
+      page => {
+        let gameLogs = {
+          gamesPlayed: page.data[0].gamesPlayed,
+          gamesWon: page.data[0].gamesWon
+        };
+        app.io.to(socket.id).emit(
+          'userProp', gameLogs
+        );
+      }
+    );
+
     app.io.emit('updateUserList', usersOnline);
     app.io.emit('msg', [`${user} has joined the room`, 'System']);
   });
@@ -47,7 +61,6 @@ app.io.on('connection', (socket) => {
   });
 
   socket.on('requestTable', (tableId) => {
-    console.log(tables);
     const findTable = (table) => table._id === tableId.tableId;
     let table = tables.find(findTable);
     app.io.to(socket.id).emit(
@@ -66,9 +79,7 @@ app.io.on('connection', (socket) => {
       }
     };
     let idx = tables.findIndex(findIdx);
-    console.log(idx);
-    tables[idx].players.push(seating[2]);
-    console.log(tables[idx]);
+    tables[idx].players[seating[1]] = seating[2];
     app.io.emit('receiveTable', tables[idx]);
   });
 
@@ -79,9 +90,7 @@ app.io.on('connection', (socket) => {
       }
     };
     let idx = tables.findIndex(findIdx);
-    console.log(idx);
     tables[idx]["board"] = gameState[1];
-    console.log(tables[idx]);
     app.io.emit('receiveTable', tables[idx]);
   });
 });

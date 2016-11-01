@@ -43,12 +43,13 @@ export default class Session extends React.Component {
   }
 
   render() {
-    const buttonValue = this.state.login ? 'Log In' : 'Sign Up';
+    const buttonValue = this.state.login ? 'LOG IN' : 'SIGN UP';
     const linkText = this.state.login ? "Don't have an account?" : "Already have an account?";
 
     return(
-      <div>
-        <div className='main-page-header group'>
+      <div className='login-page'>
+        <p className='login-header'>&#9822; Play Multiplayer Chess Online</p>
+        <div className='login-box group'>
           <div id='logo'>&#9816;</div>
           <form  className='login' onSubmit={this.handleSubmit}>
               <input
@@ -65,9 +66,7 @@ export default class Session extends React.Component {
                 value={this.state.password}/>
               <input id='submit' type='submit' value={buttonValue}/>
           </form>
-        </div>
-        <div className="main-page-bg">
-          <a href="#" onClick={this.handleClick}>{linkText}</a>
+        <p><a href="#" onClick={this.handleClick}>{linkText}</a></p>
         </div>
       </div>
     );

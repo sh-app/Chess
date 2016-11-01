@@ -19,7 +19,10 @@ const Middleware =({ getState, dispatch }) => next => action => {
 
     case SIGNUP:
       signupAjax(action.user, (data) =>
-        loginAjax(action.user, (user) => dispatch(receiveUser(user)))
+        loginAjax(action.user, (user) => {
+          dispatch(receiveUser(user));
+          socket.emit('loggedIn', user.data.username);
+        })
       );
       return next(action);
 

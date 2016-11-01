@@ -1,5 +1,6 @@
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 export const GET_USERS = 'GET_USERS';
 export const GET_TABLES = 'GET_TABLES';
 export const GET_TABLE = 'GET_TABLE';
@@ -18,6 +19,10 @@ export const signup = (user) => ({
 export const login = (user) => ({
   type: LOGIN,
   user
+});
+
+export const logout = () => ({
+  type: LOGOUT
 });
 
 export const getUsers = () => ({

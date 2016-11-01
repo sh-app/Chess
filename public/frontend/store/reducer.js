@@ -30,7 +30,6 @@ const Reducer = (state=defaultSession, action) => {
       return Object.assign({}, state, {tables: action.tables});
 
     case RECEIVE_TABLE:
-      debugger
       return Object.assign({}, state, {currentTable: action.table});
 
     case RECEIVE_MSG:
