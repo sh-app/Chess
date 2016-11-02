@@ -2,7 +2,6 @@
 
 const path = require('path');
 const serveStatic = require('feathers').static;
-const favicon = require('serve-favicon');
 const compress = require('compression');
 const cors = require('cors');
 const feathers = require('feathers');
@@ -29,12 +28,5 @@ app.use(compress())
   .configure(socketio())
   .configure(services)
   .configure(middleware);
-
-// app.service('tables').create({
-//   room: 'New York'
-// }).then(function(table) {
-//   console.log('Created table', table);
-// });
-
 
 module.exports = app;
