@@ -1,6 +1,6 @@
 {
   "host": "Chess-app.feathersjs.com",
-  "port": "process.eng.PORT",
+  "port": "PORT",
   "nedb": "NEDB_BASE_PATH",
   "public": "../public/",
   "auth": {
