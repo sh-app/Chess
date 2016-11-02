@@ -2,6 +2,7 @@
 
 const path = require('path');
 const serveStatic = require('feathers').static;
+const favicon = require('serve-favicon');
 const compress = require('compression');
 const cors = require('cors');
 const feathers = require('feathers');
@@ -28,5 +29,47 @@ app.use(compress())
   .configure(socketio())
   .configure(services)
   .configure(middleware);
+
+app.service('tables').create({
+  room: 'New York'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'San Francisco'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Chicago'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Los Angeles'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Boston'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Dallas'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Seattle'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+app.service('tables').create({
+  room: 'Miami'
+}).then(function(table) {
+  console.log('Created table', table);
+});
+
 
 module.exports = app;
