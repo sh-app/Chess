@@ -13,13 +13,15 @@
   "contributors": [],
   "bugs": {},
   "engines": {
-    "node": "6.2.1"
+    "node": "6.2.1",
+    "npm": "3.9.3"
   },
   "scripts": {
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint src/. test/. --config",
     "start": "node src/",
     "mocha": "mocha test/ --recursive",
+    "postinstall": "./node_modules/.bin/webpack",
     "webpack": "./node_modules/.bin/webpack --watch"
   },
   "dependencies": {
