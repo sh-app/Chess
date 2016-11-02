@@ -53,14 +53,14 @@ background-color: #A7C520;
 }*/
 
 div.chess_board div.chess_square_light.chess_square_valid_move {
-	-webkit-box-shadow: inset 0 0 3px 3px #CDE855;
-	-moz-box-shadow: inset 0 0 3px 3px #CDE855;
-	box-shadow: inset 0 0 3px 3px #CDE855;
+	-webkit-box-shadow: inset 0 0 2px 2px #3cff00;
+	-moz-box-shadow: inset 0 0 2px 2px #3cff00;
+	box-shadow: inset 0 0 2px 2px #3cff00;
 }
 div.chess_board div.chess_square_dark.chess_square_valid_move {
-	-webkit-box-shadow: inset 0 0 3px 3px #A7C520;
-	-moz-box-shadow: inset 0 0 3px 3px #A7C520;
-	box-shadow: inset 0 0 3px 3px #A7C520;
+	-webkit-box-shadow: inset 0 0 2px 2px #3cff00;
+	-moz-box-shadow: inset 0 0 2px 2px #3cff00;
+	box-shadow: inset 0 0 2px 2px #3cff00;
 }
 
 

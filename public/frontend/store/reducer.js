@@ -3,7 +3,9 @@ import {
   RECEIVE_USERS,
   RECEIVE_TABLE,
   RECEIVE_TABLES,
-  RECEIVE_MSG } from './actions';
+  RECEIVE_ACTIVE_TABLES,
+  RECEIVE_MSG,
+  LOGOUT } from './actions';
 import { app } from '../config';
 
 const defaultSession = {
@@ -11,7 +13,8 @@ const defaultSession = {
   tables: [],
   messages: [],
   users: [],
-  currentTable: null
+  currentTable: null,
+  activeTables: []
 };
 
 const Reducer = (state=defaultSession, action) => {
@@ -29,12 +32,20 @@ const Reducer = (state=defaultSession, action) => {
     case RECEIVE_TABLES:
       return Object.assign({}, state, {tables: action.tables});
 
+    case RECEIVE_ACTIVE_TABLES:
+      return Object.assign({}, state, {activeTables: action.tables});
+      
     case RECEIVE_TABLE:
       return Object.assign({}, state, {currentTable: action.table});
 
     case RECEIVE_MSG:
       let messages = state.messages || [];
       return Object.assign({}, state, {messages: messages.concat([action.msg])});
+
+    case LOGOUT:
+      app.logout();
+      window.sessionStorage.clear();
+      return defaultSession;
 
     default:
       return state;

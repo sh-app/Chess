@@ -57,6 +57,11 @@ button:hover {
 h3 {
   font-size: 18px;
 }
+
+.main {
+  min-width: 900px;
+  width: 100vw;
+}
 /* --- LOGIN PAGE --- */
 .login-page {
   background-color: #E0FBFC;
@@ -123,6 +128,12 @@ h3 {
   border: 1px solid #DADADA;
 }
 
+.demo {
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 /* --- HEADER --- */
 .header {
   padding: 10px;
@@ -135,23 +146,35 @@ h3 {
 .header button {
   float: right;
   margin-right: 20px;
+  background-color: #CA5D60;
+}
+
+.header button:hover {
+  background-color: #7d3a3c;
 }
 
 .header h3 p {
   float: right;
 }
 
+.header-logo {
+  float: left;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
 /* --- CHAT --- */
 .chatbox {
   float: left;
+  min-width: 360px;
   width: 45%;
   height: 100%;
-  padding: 10px;
+  padding: 0px 0px 0px 10px;
 }
 
 .users-title {
-  width: 30%;
   float: left;
+  width: 30%;
   padding: 5px;
   font-family: 'Ubuntu Condensed';
   text-align: center;
@@ -181,11 +204,18 @@ h3 {
   padding: 5px;
 }
 
-.chatbox form {
+.messages {
   width: 60%;
+  height: 100%;
   float: left;
   padding: 5px;
   border-right: 1px solid #DADADA;
+}
+
+.chatbox form {
+  width: 100%;
+  float: left;
+  padding: 5px;
 }
 
 .chat-message {
@@ -202,21 +232,129 @@ h3 {
   background-color: #2DBE60;
   border-bottom: 1px solid #2DBE60;
 }
-.messages {
-  width: 60%;
-  height: 80%;
-  float: left;
-  padding: 5px;
-  border-right: 1px solid #DADADA;
-}
 
 .messages li {
   padding: 5px;
   border-bottom: 1px dashed #DADADA;
 }
 
-#board {
-  float: right;
+/* --- LOBBY --- */
+.lobby {
+  float: left;
+  min-width: 440px;
   width: 50%;
-  border: 2px solid #DADADA;
+  height: 100%;
+  padding: 0px 0px 10px 0px;
+}
+
+.lobby-title {
+  width: 100%;
+  padding: 0px 10px 10px 0px;
+  font-family: 'Ubuntu Condensed';
+  text-align: center;
+  border-left: 1px solid #DADADA;
+  border-right: 1px solid #DADADA;
+}
+
+.tables {
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px 5px 0px;
+  border-left: 1px solid #DADADA;
+  border-right: 1px solid #DADADA;
+}
+
+.tables li {
+  float: left;
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.tables li:nth-child(odd) {
+  background-color: #DADADA;
+}
+
+.view-table {
+  float: right;
+  font-size: 12px;
+}
+
+.goto {
+  padding: 1px 3px;
+  float: right;
+  margin-left: 5px;
+  color: #FFFFFF;
+}
+
+/* --- TABLE --- */
+.room-name {
+  width: 100%;
+  padding: 0px 0px 10px 0px;
+  font-family: 'Ubuntu Condensed';
+  text-align: center;
+  border-left: 1px solid #DADADA;
+  border-right: 1px solid #DADADA;
+}
+
+.join, .player {
+  width: 100%;
+  padding: 1px 0px;
+  border-radius: 0px;
+  border-left: 1px solid #DADADA;
+  border-right: 1px solid #DADADA;
+}
+
+.back {
+  float: left;
+  padding: 2px 5px;
+  margin: 2px 5px;
+  background-color: #CA5D60;
+}
+
+.quit {
+  float: right;
+  padding: 2px 5px;
+  margin: 2px 5px;
+  background-color: #CA5D60;
+}
+
+.quit:hover, .back:hover {
+  background-color: #7d3a3c;
+}
+
+.black {
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #CA5D60;
+}
+
+.white {
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #3B6796;
+}
+
+.game-control {
+  width: 100%;
+}
+.game-control li {
+  cursor: pointer;
+  display: inline;
+  margin: 2px 0px 2px 5px;
+  padding: 2px 5px;
+  float: left;
+  background-color: #C7CED2;
+  border-radius: 5px;
+  border: 1px solid #DADADA;
+}
+
+.game-control li:hover {
+  color: #FFFFFF;
+  background-color: #2DBE60;
+}
+
+#board {
+  width: 100%;
+  border: 1px solid #DADADA;
 }

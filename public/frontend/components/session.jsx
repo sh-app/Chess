@@ -42,6 +42,14 @@ export default class Session extends React.Component {
     this.state.login ? this.props.login(user) : this.props.signup(user);
   }
 
+  handleDemo(num) {
+    if (num===1) {
+      this.props.login({ username: "guest1", password: "password"});
+    } else {
+      this.props.login({ username: "guest2", password: "password"});
+    }
+  }
+
   render() {
     const buttonValue = this.state.login ? 'LOG IN' : 'SIGN UP';
     const linkText = this.state.login ? "Don't have an account?" : "Already have an account?";
@@ -67,6 +75,14 @@ export default class Session extends React.Component {
               <input id='submit' type='submit' value={buttonValue}/>
           </form>
         <p><a href="#" onClick={this.handleClick}>{linkText}</a></p>
+        <p><u>DEMO ACCOUNTS:</u><br></br>
+          <a
+            className='demo'
+            onClick={this.handleDemo.bind(this, 1)}>Guest1</a> |
+          <a
+            className='demo'
+            onClick={this.handleDemo.bind(this, 2)}>Guest2</a>
+          </p>
         </div>
       </div>
     );

@@ -1,8 +1,10 @@
 import {
   SIGNUP,
   LOGIN,
+  GET_GAME_LOGS,
   GET_USERS,
   GET_TABLES,
+  GET_ACTIVE_TABLES,
   GET_TABLE,
   SEND_MSG,
   login,
@@ -39,6 +41,14 @@ const Middleware =({ getState, dispatch }) => next => action => {
 
     case GET_TABLES:
       socket.emit('requestTables');
+      return next(action);
+
+    case GET_ACTIVE_TABLES:
+      socket.emit('requestActiveTables', action.user);
+      return next(action);
+
+    case GET_GAME_LOGS:
+      socket.emit('requestLogs', action.user);
       return next(action);
 
     case GET_TABLE:

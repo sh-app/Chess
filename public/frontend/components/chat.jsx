@@ -51,26 +51,26 @@ export default class Chat extends React.Component {
     });
     messages.reverse();
     return (
-      <div className='chatbox'>
+      <div className='chatbox group'>
         <div className='users-title'>Users Online:</div>
         <div className='messages-title'>Chat:</div>
         <ul className='users'>
           {users}
         </ul>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            className='chat-message'
-            onChange={this.handleChange('msg')}
-            placeholder='say hello!'
-            value={this.state.msg}/>
-          <input
-            type='submit'
-            className='chat-submit'
-            onSubmit={this.handleSubmit}
-            value={'>>'}/>
-        </form>
         <ul className='messages'>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type='text'
+              className='chat-message'
+              onChange={this.handleChange('msg')}
+              placeholder='say hello!'
+              value={this.state.msg}/>
+            <input
+              type='submit'
+              className='chat-submit'
+              onSubmit={this.handleSubmit}
+              value={'>>'}/>
+          </form>
           {messages}
         </ul>
       </div>
