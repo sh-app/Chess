@@ -4,6 +4,7 @@ Multiplayer chess implemented using feathers.js, socket.io, react, and redux.
 
 ## About
 
+Live Demo: [Multiplayer Chess](http://sh-chess.herokuapp.com/)
 
 ## Getting Started
 
