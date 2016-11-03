@@ -32,7 +32,7 @@ app.use(compress())
 
 app.service('tables').find({
   query: {
-    $limit: 10
+    room: 'New York'
   }
 }).then( page => {
   if (page.data.length === 0) {
