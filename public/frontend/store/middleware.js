@@ -66,8 +66,7 @@ const Middleware =({ getState, dispatch }) => next => action => {
 };
 
 const RootMiddleware = applyMiddleware(
-  Middleware,
-  createLogger()
+  Middleware
 );
 
 export default RootMiddleware;

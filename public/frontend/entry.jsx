@@ -12,8 +12,6 @@ if (window.sessionStorage.currentUser) {
 } else {
   store = configureStore();
 }
-
-  window.store = store;
   
   document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store}/>, document.getElementById('root'));

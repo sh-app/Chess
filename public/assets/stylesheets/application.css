@@ -338,6 +338,7 @@ h3 {
 .game-control {
   width: 100%;
 }
+
 .game-control li {
   cursor: pointer;
   display: inline;

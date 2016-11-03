@@ -77,7 +77,7 @@ export default class Table extends React.Component {
   }
 
   endGame() {
-    if ((!tableFull(this.state.players))) {
+    if (!tableFull(this.state.players)) {
       socket.emit('endgame', this.state.room);
     } else if (this.game.in_draw() || this.game.in_threefold_repetition()) {
         socket.emit('updateLog', [this.props.currentUser, 1, 0]);
@@ -85,18 +85,19 @@ export default class Table extends React.Component {
         socket.emit('endgame', this.state.room);
     } else {
         let players = this.logOrder();
-        socket.emit('updateLog', [players[0], 1, 1]);
-        socket.emit('updateLog', [players[1], 1, 0]);
+        socket.emit('updateLog', [players[0], 1, 0]);
+        socket.emit('updateLog', [players[1], 1, 1]);
         socket.emit('removeFromList', [this.state.players, this.state.room]);
         socket.emit('endgame', this.state.room);
     }
   }
 
   logOrder() {
-    if (this.props.currentUser === [this.state.players[0]]) {
-      return this.state.players.reverse();
-    } else {
+    let color = this.game.turn();
+    if ( color === 'w' && this.state.players[0] === this.props.currentUser) {
       return this.state.players;
+    } else if (color === 'b' && this.state.players[1] === this.props.currentUser) {
+      return this.state.players.reverse();
     }
   }
 
@@ -133,17 +134,24 @@ export default class Table extends React.Component {
       const whiteDisplay = this.state.players[0] ? {display: 'none'} : {display: ''};
       return (
         <section>
+
           <div className='room-name'>
             <Link to='lobby'><button className='back'>{'<<Lobby'}</button></Link>
             {this.state.room}
             <button className='quit' onClick={this.endGame.bind(this)}>Quit</button>
           </div>
-          <button className='join' style={blackDisplay} onClick={this.handleJoin.bind(this, 1)}>SIT HERE</button>
+
+          <button className='join'
+            style={blackDisplay}
+            onClick={this.handleJoin.bind(this, 1)}>SIT HERE</button>
           <div className='player black'>{this.state.players[1]}</div>
           <div id='board'>
           </div>
-          <button className='join' style={whiteDisplay} onClick={this.handleJoin.bind(this, 0)}>SIT HERE</button>
+          <button className='join'
+            style={whiteDisplay}
+            onClick={this.handleJoin.bind(this, 0)}>SIT HERE</button>
           <div className='player white'>{this.state.players[0]}</div>
+          
           <div className='game-control group'>
             <ul>{activeGames}</ul>
           </div>

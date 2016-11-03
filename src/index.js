@@ -134,7 +134,7 @@ app.io.on('connection', (socket) => {
     );
     app.io.emit('receiveTable', tables[idx]);
     app.io.emit('updateTableList', tables);
-    app.io.emit('msg', [`${seating[2]} has joined the ${seating[0]}`, 'System']);
+    app.io.emit('msg', [`${seating[2]} has joined ${seating[0]}`, 'System']);
   });
 
   socket.on('move', (gameState) => {
